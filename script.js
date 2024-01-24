@@ -1,63 +1,53 @@
-let currentInput = '';
-let operator = '';
-let firstOperand = '';
-let resultDisplayed = false;
-
-function appendNumber(number) {
-    if (resultDisplayed) {
-        clearDisplay();
-        resultDisplayed = false;
-    }
-    currentInput += number;
-    updateDisplay();
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-function appendOperator(op) {
-    if (resultDisplayed) {
-        resultDisplayed = false;
-    }
-    if (operator !== '' && currentInput !== '') {
-        calculate();
-    }
-    operator = op;
-    firstOperand = currentInput;
-    currentInput = '';
-    updateDisplay();
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
 }
 
-function calculate() {
-    let result;
-    const secondOperand = currentInput;
-    
-    if (operator === '+') {
-        result = parseFloat(firstOperand) + parseFloat(secondOperand);
-    } else if (operator === '-') {
-        result = parseFloat(firstOperand) - parseFloat(secondOperand);
-    } else if (operator === '*') {
-        result = parseFloat(firstOperand) * parseFloat(secondOperand);
-    } else if (operator === '/') {
-        if (parseFloat(secondOperand) !== 0) {
-            result = parseFloat(firstOperand) / parseFloat(secondOperand);
-        } else {
-            result = 'Error';
-        }
-    }
-
-    currentInput = result.toString();
-    operator = '';
-    firstOperand = '';
-    resultDisplayed = true;
-    updateDisplay();
+header h1 {
+    margin: 0;
+    font-size: 2em;
 }
 
-function clearDisplay() {
-    currentInput = '';
-    operator = '';
-    firstOperand = '';
-    resultDisplayed = false;
-    updateDisplay();
+header p {
+    font-size: 1.2em;
 }
 
-function updateDisplay() {
-    document.getElementById('display').value = currentInput;
+.destinations {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.destination {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.destination img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
